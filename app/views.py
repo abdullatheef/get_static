@@ -6,19 +6,25 @@ import simplejson
 
 @csrf_exempt
 def home(request):
-	try:
-		if request.method == "POST":
-			return HttpResponse(
+	return render(request, 'index.html', {})
+
+
+
+@csrf_exempt
+def upload(request):
+    try:
+        if request.method == "POST":
+            return HttpResponse(
                 simplejson.dumps(
                     {"files": [
                       {
-                        "name": "77464_537620316255351_1441662113_o.jpg.jpg",
+                        "name": "77464_537620316255351_1441662113_o.jpg",
                         "size": 902604,
                         "error": "Filetype not alloweddd"
                       }
                     ]}
                 )
-			)
-	except:
-		pass
-	return render(request, 'home.html', {})
+            )
+    except:
+        pass
+    return render(request, 'home.html', {})
